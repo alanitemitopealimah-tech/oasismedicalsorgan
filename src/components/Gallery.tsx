@@ -10,8 +10,16 @@ const Gallery = () => {
     name: "Clinic Exterior View",
     category: "Facility"
   }, {
+    src: "/lovable-uploads/external-view.jpg",
+    name: "External View",
+    category: "Facility"
+  }, {
     src: "/lovable-uploads/waiting-area-new.png",
     name: "Waiting Area",
+    category: "Facility"
+  }, {
+    src: "/lovable-uploads/reception-area.jpg",
+    name: "Reception",
     category: "Facility"
   }, {
     src: "/lovable-uploads/medical-doctor.jpg",
@@ -38,7 +46,15 @@ const Gallery = () => {
     name: "Radiographer at work/X-ray Department",
     category: "Services"
   }, {
+    src: "/lovable-uploads/digital-xray-department.jpg",
+    name: "Digital X-ray",
+    category: "Services"
+  }, {
     src: "/lovable-uploads/ultrasound-department.jpg",
+    name: "Ultrasound Department",
+    category: "Services"
+  }, {
+    src: "/lovable-uploads/ultrasound-department-new.jpg",
     name: "Ultrasound Department",
     category: "Services"
   }, {
