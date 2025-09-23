@@ -7,10 +7,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, Phone, Mail, MessageCircle, Clock, Navigation } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    testType: '',
+    preferredDate: '',
+    preferredTime: '',
+    notes: ''
+  });
 
   const contactInfo = [
     {
@@ -43,14 +53,53 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Validate required fields
+      if (!formData.fullName || !formData.phone || !formData.testType) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in your name, phone number, and test type.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Send email via edge function
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // Reset form and show success message
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        testType: '',
+        preferredDate: '',
+        preferredTime: '',
+        notes: ''
+      });
+
       toast({
         title: "Booking Request Sent!",
-        description: "We'll contact you within 30 minutes to confirm your appointment.",
+        description: "Your message has been sent to OASIS Medical Center. We'll contact you within 30 minutes to confirm your appointment.",
       });
-    }, 2000);
+
+    } catch (error) {
+      console.error('Error sending contact form:', error);
+      toast({
+        title: "Error Sending Message",
+        description: "There was a problem sending your message. Please try again or contact us directly at 08058135226.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openWhatsApp = () => {
@@ -129,22 +178,48 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-1 sm:space-y-2">
                       <Label htmlFor="fullName" className="text-xs sm:text-sm">Full Name *</Label>
-                      <Input id="fullName" placeholder="Enter your full name" required className="text-sm sm:text-base" />
+                      <Input 
+                        id="fullName" 
+                        placeholder="Enter your full name" 
+                        required 
+                        className="text-sm sm:text-base"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                      />
                     </div>
                     <div className="space-y-1 sm:space-y-2">
                       <Label htmlFor="phone" className="text-xs sm:text-sm">Phone Number *</Label>
-                      <Input id="phone" type="tel" placeholder="08012345678" required className="text-sm sm:text-base" />
+                      <Input 
+                        id="phone" 
+                        type="tel" 
+                        placeholder="08012345678" 
+                        required 
+                        className="text-sm sm:text-base"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      />
                     </div>
                   </div>
 
                   <div className="space-y-1 sm:space-y-2">
                     <Label htmlFor="email" className="text-xs sm:text-sm">Email Address</Label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" className="text-sm sm:text-base" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="your.email@example.com" 
+                      className="text-sm sm:text-base"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    />
                   </div>
 
                   <div className="space-y-1 sm:space-y-2">
                     <Label htmlFor="testType" className="text-xs sm:text-sm">Test Type *</Label>
-                    <Select required>
+                    <Select 
+                      required
+                      value={formData.testType}
+                      onValueChange={(value) => setFormData({...formData, testType: value})}
+                    >
                       <SelectTrigger className="text-sm sm:text-base">
                         <SelectValue placeholder="Select test type" />
                       </SelectTrigger>
@@ -161,11 +236,20 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-1 sm:space-y-2">
                       <Label htmlFor="preferredDate" className="text-xs sm:text-sm">Preferred Date</Label>
-                      <Input id="preferredDate" type="date" className="text-sm sm:text-base" />
+                      <Input 
+                        id="preferredDate" 
+                        type="date" 
+                        className="text-sm sm:text-base"
+                        value={formData.preferredDate}
+                        onChange={(e) => setFormData({...formData, preferredDate: e.target.value})}
+                      />
                     </div>
                     <div className="space-y-1 sm:space-y-2">
                       <Label htmlFor="preferredTime" className="text-xs sm:text-sm">Preferred Time</Label>
-                      <Select>
+                      <Select
+                        value={formData.preferredTime}
+                        onValueChange={(value) => setFormData({...formData, preferredTime: value})}
+                      >
                         <SelectTrigger className="text-sm sm:text-base">
                           <SelectValue placeholder="Select time" />
                         </SelectTrigger>
@@ -185,6 +269,8 @@ const Contact = () => {
                       placeholder="Any specific requirements or questions..."
                       rows={3}
                       className="text-sm sm:text-base"
+                      value={formData.notes}
+                      onChange={(e) => setFormData({...formData, notes: e.target.value})}
                     />
                   </div>
 

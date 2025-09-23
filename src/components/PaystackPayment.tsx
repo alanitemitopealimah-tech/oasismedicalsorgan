@@ -77,18 +77,25 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
         status: 'pending'
       };
 
-      const { data: payment, error: paymentError } = await supabase
-        .from('payments')
-        .insert(paymentData)
-        .select()
-        .single();
+      // TODO: Database integration - temporarily disabled
+      // const { data: payment, error: paymentError } = await supabase
+      //   .from('payments')
+      //   .insert(paymentData)
+      //   .select()
+      //   .single();
 
-      if (paymentError) {
-        console.error('Payment creation error:', paymentError);
-        toast.error('Failed to create payment record');
-        setLoading(false);
-        return;
-      }
+      // if (paymentError) {
+      //   console.error('Payment creation error:', paymentError);
+      //   toast.error('Failed to create payment record');
+      //   setLoading(false);
+      //   return;
+      // }
+
+      // Temporary mock payment object
+      const payment = {
+        id: `temp_${Date.now()}`,
+        paystack_reference: paymentData.paystack_reference
+      };
 
       // Configure channels - show all available payment methods
       let channels: string[] = ['card', 'bank', 'ussd', 'mobile_money', 'opay'];
