@@ -152,7 +152,7 @@ const PricingDetails = () => {
       tests: [
         // STOOL
         { name: "STOOL: Microscopy", price: "₦3,000" },
-        { name: "STOOL: M/C/S", price: "₦5,000" },
+        { name: "STOOL: M/C/S", price: "₦7,000" },
         { name: "STOOL: Occult Blood", price: "₦7,000" },
         // BLOOD
         { name: "BLOOD: Malaria Parasites", price: "₦2,000" },
@@ -176,8 +176,8 @@ const PricingDetails = () => {
         { name: "SEMINAL FLUID: Analysis", price: "₦10,000" },
         { name: "SEMINAL FLUID: M/C/S", price: "₦15,000" },
         // SKIN
-        { name: "SKIN: Snips For Microfilaria", price: "₦5,000" },
-        { name: "SKIN: Fungal Element", price: "₦5,000" },
+        { name: "SKIN: Snips For Microfilaria", price: "₦10,000" },
+        { name: "SKIN: Fungal Element", price: "₦10,000" },
         // SWAB
         { name: "SWAB: HVS M/C/S", price: "₦6,000" },
         { name: "SWAB: Urethral M/C/S", price: "₦8,000" },
