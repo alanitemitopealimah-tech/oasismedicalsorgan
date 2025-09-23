@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 100% 99%;
+    --foreground: 220 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
+
+    --primary: 188 100% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 97%;
+    --secondary-foreground: 220 25% 20%;
+
+    --muted: 210 25% 95%;
+    --muted-foreground: 220 15% 55%;
+
+    --accent: 332 84% 57%;
+    --accent-foreground: 0 0% 100%;
+
+    --medical-cyan: 188 100% 42%;
+    --medical-magenta: 332 84% 57%;
+    --medical-gradient: linear-gradient(135deg, hsl(var(--medical-cyan)), hsl(var(--medical-magenta)));
+    --medical-glow: 0 20px 40px hsl(var(--medical-cyan) / 0.1);
+    
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Premium Logo Animations */
+@keyframes logo-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes premium-spin {
+  0% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 10px hsl(var(--medical-cyan) / 0.3)); }
+  25% { transform: rotate(90deg) scale(1.02); filter: drop-shadow(0 0 15px hsl(var(--medical-magenta) / 0.4)); }
+  50% { transform: rotate(180deg) scale(1.05); filter: drop-shadow(0 0 20px hsl(var(--medical-cyan) / 0.5)); }
+  75% { transform: rotate(270deg) scale(1.02); filter: drop-shadow(0 0 15px hsl(var(--medical-magenta) / 0.4)); }
+  100% { transform: rotate(360deg) scale(1); filter: drop-shadow(0 0 10px hsl(var(--medical-cyan) / 0.3)); }
+}
+
+@keyframes premium-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes premium-shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%) rotate(45deg); opacity: 0; }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Premium Animation Classes */
+@layer utilities {
+  .animate-logo-spin {
+    animation: logo-spin 1s ease-in-out;
+  }
+  
+  .animate-premium-spin {
+    animation: premium-spin 3s linear infinite;
+  }
+  
+  .animate-premium-glow {
+    animation: premium-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-premium-shimmer {
+    animation: premium-shimmer 2s ease-in-out infinite;
+  }
+}
