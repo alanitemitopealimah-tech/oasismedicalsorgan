@@ -53,9 +53,9 @@ const PricingDetails = () => {
         { name: "Full Body Checkup (Opal)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tTotal Cholesterol\n\t•\tFull Blood Count\n\t•\tUrinalysis\n\t•\tLiver Function Test\n\t•\tKidney Function Test", price: "₦45,000" },
         { name: "Full Body Checkup (Ruby)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tLipid Profile\n\t•\tFull Blood Count\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tLiver Function Test\n\t•\tKidney Function Test", price: "₦70,000" },
         { name: "Full Body Checkup (Diamond)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tHbA1C (Glycated Heamoglobin)\n\t•\tLipid Profile\n\t•\tLiver Function Test\n\t•\tKidney Function Test\n\t•\tUric Acid\n\t•\tC-Reactive Protein CRP\n\t•\tThyroid Function Test 1 (Free T3, Free T4, TSH)\n\t•\tFull Blood Count\n\t•\tHepatitis B Surface Antigen (HBsAg) Rapid\n\t•\tHIV I & II Rapid\n\t•\tHepatitis C Virus Antibody (HCV) Rapid\n\t•\tStool Occult Blood\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tLiquid Based Cytology (LBC)", price: "₦200,000" },
-        { name: "Fertility/Hormonal Tests (Basic)\n\t•\tProgesterone\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProlactin", price: "₦40,000" },
-        { name: "Fertility/Hormonal Tests (Standard)\n\t•\tProgesterone\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProgesterone\n\t•\tProlactin", price: "₦55,000" },
-        { name: "Fertility/Hormonal Tests (Comprehensive)\n\t•\tThyroid-Stimulating Hormone (TSH)\n\t•\tProgesterone\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProgesterone\n\t•\tProlactin\n\t•\tAnti Mullerian Hormone (AMH)", price: "₦150,000" }
+        { name: "Fertility/Hormonal Tests (Basic)\n\t•\tEstradiol\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProlactin", price: "₦40,000" },
+        { name: "Fertility/Hormonal Tests (Standard)\n\t•\tEstradiol\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProgesterone\n\t•\tProlactin", price: "₦55,000" },
+        { name: "Fertility/Hormonal Tests (Comprehensive)\n\t•\tThyroid-Stimulating Hormone (TSH)\n\t•\tEstradiol\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProgesterone\n\t•\tProlactin\n\t•\tAnti Mullerian Hormone (AMH)", price: "₦150,000" }
       ]
     },
     domesticStaff: {
