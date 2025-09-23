@@ -26,8 +26,8 @@ const PricingDetails = () => {
       color: "from-orange-500 to-red-500",
       description: "Know the cause of your reoccurring Fever and get proper treatment now. It's not always malaria. A proper test will help you understand the root cause and save you from wasting time and money on ineffective treatment. Get tested and discuss the result with a doctor.",
       tests: [
-        { name: "Basic Package\n\t•\tFull Blood Count\n\t•\tMalaria (Thick and Thin Films)\n\t•\tWIDAL (Typhoid Test)\n\t•\tUrinalysis", price: "₦15,000" },
-        { name: "Comprehensive Package\n\t•\tErythrocyte Sedimentation Rate\n\t•\tFull Blood Count\n\t•\tMalaria (Thick and Thin Films)\n\t•\tWIDAL (Typhoid Test)\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tSputum AFB – Tuberculosis test", price: "₦30,000" }
+        { name: "Basic Package\n\t•\tFull Blood Count\n\t•\tMalaria (Thick and Thin Films)\n\t•\tWidal (Typhoid Test)\n\t•\tUrinalysis", price: "₦15,000" },
+        { name: "Comprehensive Package\n\t•\tErythrocyte Sedimentation Rate\n\t•\tFull Blood Count\n\t•\tMalaria (Thick and Thin Films)\n\t•\tWidal (Typhoid Test)\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tSputum AFB – Tuberculosis test", price: "₦30,000" }
       ]
     },
     menPackages: {
@@ -37,8 +37,8 @@ const PricingDetails = () => {
       description: "Get a clear picture of your health, then take control. Stay in touch with your general health today. Your time, your convenience, your choice. Our comprehensive health screening packages are designed to provide a detailed overview of your general body health, including cardiovascular health, blood sugar levels, kidney and liver function, and more.",
       tests: [
         { name: "Full Body Checkup (Opal)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tTotal Cholesterol\n\t•\tFull Blood Count\n\t•\tUrinalysis\n\t•\tLiver Function Test\n\t•\tKidney Function Test", price: "₦45,000" },
-        { name: "Full Body Checkup (Ruby)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tLipid Profile\n\t•\tFull Blood Count\n\t•\tTotal Prostate Specific Antigen (Total PSA)\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tLiver Function Test\n\t•\tKidney Function Test", price: "₦80,000" },
-        { name: "Full Body Checkup (Diamond)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tHbA1C (Glycated Heamoglobin)\n\t•\tLipid Profile\n\t•\tLiver Function Test\n\t•\tKidney Function Test\n\t•\tUric Acid\n\t•\tC-Reactive Protein CRP\n\t•\tThyroid Function Test 1 (Free T3, Free T4, TSH)\n\t•\tFull Blood Count\n\t•\tTotal Prostate Specific Antigen (Total PSA)\n\t•\tHepatitis B Surface Antigen (HBsAg) Rapid\n\t•\tHIV I & II Rapid\n\t•\tHepatitis C Virus Antibody (HCV) Rapid\n\t•\tStool Occult Blood\n\t•\tStool Microscopy\n\t•\tUrinalysis", price: "₦180,000" },
+        { name: "Full Body Checkup (Ruby)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tLipid Profile\n\t•\tFull Blood Count\n\t•\tProstate Specific Antigen (Quantitative) >40yrs\n\t•\tStool Microscopy\n\t•\tUrinalysis\n\t•\tLiver Function Test\n\t•\tKidney Function Test", price: "₦80,000" },
+        { name: "Full Body Checkup (Diamond)\n\t•\tFasting Blood Sugar (FBS)\n\t•\tHbA1C (Glycated Heamoglobin)\n\t•\tLipid Profile\n\t•\tLiver Function Test\n\t•\tKidney Function Test\n\t•\tUric Acid\n\t•\tC-Reactive Protein CRP\n\t•\tThyroid Function Test 1 (Free T3, Free T4, TSH)\n\t•\tFull Blood Count\n\t•\tProstate Specific Antigen (Quantitative) >40yrs\n\t•\tHepatitis B Surface Antigen (HBsAg) Rapid\n\t•\tHIV I & II Rapid\n\t•\tHepatitis C Virus Antibody (HCV) Rapid\n\t•\tStool Occult Blood\n\t•\tStool Microscopy\n\t•\tUrinalysis", price: "₦180,000" },
         { name: "Fertility/Hormonal Tests (Basic)\n\t•\tSeminal Fluid Analysis\n\t•\tSemen: Microscopy, Culture and Sensitivity", price: "₦15,000" },
         { name: "Fertility/Hormonal Tests (Standard)\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tTestosterone (Total)\n\t•\tSeminal Fluid Analysis\n\t•\tSemen: Microscopy, Culture and Sensitivity", price: "₦60,000" },
         { name: "Erectile Dysfunction Package\n\t•\tFasting Blood Sugar (FBS)\n\t•\tFollicule Stimulating Hormone (FSH)\n\t•\tLH - Luteinizing Hormone\n\t•\tProlactin\n\t•\tTestosterone (Total)\n\t•\tSeminal Fluid Analysis\n\t•\tSemen: Microscopy, Culture and Sensitivity", price: "₦100,000" }
@@ -86,19 +86,18 @@ const PricingDetails = () => {
       color: "from-medical-cyan to-blue-500",
       description: "Our advanced ultrasound imaging services provide detailed visualization of internal organs and structures. These non-invasive diagnostic scans help detect and monitor various medical conditions with precision and safety.",
       tests: [
-        { name: "Pelvic/Obstetrics Scan", price: "₦2,500" },
-        { name: "Abdominal Scan", price: "₦7,000" },
-        { name: "Abdominopelvic Scan", price: "₦10,000" },
-        { name: "Upper Abdominal Scan", price: "₦5,000" },
-        { name: "Lower Abdominal Scan", price: "₦5,000" },
-        { name: "Breast Scan", price: "₦7,000" },
-        { name: "Neck/Thyroid Scan", price: "₦10,000" },
+        { name: "Pelvic/ Obstetrics", price: "₦3,000" },
+        { name: "Abdominal", price: "₦7,000" },
+        { name: "Abdominopelvic", price: "₦10,000" },
+        { name: "Upper Abdominal", price: "₦5,000" },
+        { name: "Lower Abdominal", price: "₦5,000" },
+        { name: "Breast", price: "₦7,000" },
+        { name: "Neck/Thyroid", price: "₦10,000" },
         { name: "Transvaginal Pelvic Scan (TVS)", price: "₦10,000" },
-        { name: "Prostate scan (Transrectal)", price: "₦7,000" },
+        { name: "Prostate scan (Transrectal)", price: "₦10,000" },
         { name: "Folliculometry", price: "₦30,000" },
-        
         { name: "Scrotal Scan", price: "₦7,000" },
-        { name: "Specialized Area Scan", price: "CALL" }
+        { name: "For other areas of Scan", price: "CALL" }
       ]
     },
     haematology: {
@@ -230,7 +229,7 @@ const PricingDetails = () => {
       title: "Electrocardiograph (ECG)",
       icon: Activity,
       color: "from-medical-cyan to-blue-600",
-      description: "Our ECG services monitor your heart's electrical activity to detect heart rhythm abnormalities, heart attacks, and other cardiac conditions. This non-invasive test is essential for cardiovascular health assessment.",
+      description: "Our ECG services monitor your heart's electrical activity to detect heart rhythm abnormalities, heart attacks, and other cardiac conditions. This non-invasive test is essential for cardiovascular health assessment. All investigations are reviewed by qualified cardiologists.",
       tests: [
         { name: "Pre & Post Exercise", price: "₦12,000" }
       ]
@@ -319,7 +318,7 @@ const PricingDetails = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Complete <span className="bg-gradient-to-r from-medical-cyan to-medical-magenta bg-clip-text text-transparent">Price List 2025</span>
+            Complete <span className="bg-gradient-to-r from-medical-cyan to-medical-magenta bg-clip-text text-transparent">Price List</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Transparent pricing for all our diagnostic services. Search for specific tests or browse by category.
@@ -357,7 +356,7 @@ const PricingDetails = () => {
                       <h2 className="text-3xl font-bold mb-2">{category.title}</h2>
                       <div className="flex items-center space-x-3">
                         <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                          2025 Pricing
+                          Pricing
                         </Badge>
                         <span className="text-white/80 text-sm">{category.tests.length} packages available</span>
                       </div>
@@ -386,7 +385,7 @@ const PricingDetails = () => {
                             </div>
                             <div>
                               <h3 className="text-xl font-semibold text-foreground">
-                                View Available {category.title} Packages
+                                View Available {category.title.replace(/packages?$/i, '').trim()} Packages
                               </h3>
                               <p className="text-sm text-muted-foreground">
                                 Click to see all package options and pricing details
