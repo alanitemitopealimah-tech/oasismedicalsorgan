@@ -238,7 +238,7 @@ const PricingDetails = () => {
       title: "X-Ray with Radiological Report",
       icon: X,
       color: "from-gray-600 to-slate-700",
-      description: "Our advanced digital X-ray imaging services provide detailed radiological reports for accurate diagnosis of bone fractures, lung conditions, and internal abnormalities. All images are reviewed by qualified radiologists.",
+      description: "Our advanced digital X-ray imaging services provide detailed radiological reports for accurate diagnosis of bone fractures, lung conditions, and internal abnormalities. All investigations are reviewed by qualified cardiologists.",
       tests: [
         // Head and Neck
         { name: "HEAD & NECK: Skull (AP & Lat)", price: "₦12,000" },
