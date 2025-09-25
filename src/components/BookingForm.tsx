@@ -19,7 +19,7 @@ import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import { MessageCircle, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 // Test categories and tests data - Matching exactly with official price list
 const TEST_CATEGORIES = {
@@ -221,7 +221,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedTests, setSelectedTests] = useState<Array<{name: string, price: number, category: string}>>([]);
   const [totalCost, setTotalCost] = useState(0);
-  const [hasContactedWhatsApp, setHasContactedWhatsApp] = useState(false);
   const [openCategories, setOpenCategories] = useState<{ [key: string]: boolean }>({});
 
   const form = useForm<FormData>({
@@ -262,21 +261,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
     }));
   };
 
-  const handleWhatsAppContact = () => {
-    const phoneNumber = "2347033600770";
-    const message = "Hi, I would like to inquire about home/office sample collection charges before placing my booking.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    setHasContactedWhatsApp(true);
-    toast.success('Please discuss the charges with us on WhatsApp before proceeding with your booking.');
-  };
-
   const onSubmit = async (data: FormData) => {
-    if (!hasContactedWhatsApp) {
-      toast.error('Please contact us on WhatsApp first to discuss home/office collection charges.');
-      return;
-    }
-    
     setIsSubmitting(true);
     
     try {
@@ -513,23 +498,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
                     Home/Office sample collection attracts extra charges based on distance. Kindly contact us first before placing an order.
                   </p>
                 </div>
-                
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="w-full flex items-center gap-2 bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
-                  onClick={handleWhatsAppContact}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  👉 Contact Us on WhatsApp to Discuss Charges
-                </Button>
-                
-                {hasContactedWhatsApp && (
-                  <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 p-2 rounded">
-                    <span>✅</span>
-                    <span>Great! You can now proceed with your booking.</span>
-                  </div>
-                )}
               </div>
             </div>
           </Form>
