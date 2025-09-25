@@ -23,7 +23,7 @@ const MedicalDirector = () => {
             <div className="lg:col-span-2">
               <div className="relative h-full min-h-[600px]">
                 <img 
-                  src="/lovable-uploads/dr-timothy-olugbode.jpg" 
+                  src="/lovable-uploads/new-medical-director.jpg" 
                   alt="Dr. Timothy Olayemi Olugbode - Medical Director and CEO of OASIS MEDICALS"
                   className="w-full h-full object-cover"
                 />

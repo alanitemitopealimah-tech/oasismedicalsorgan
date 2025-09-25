@@ -6,16 +6,16 @@ import { useState } from "react";
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const galleryImages = [{
-    src: "/lovable-uploads/clinic-exterior-new.png",
-    name: "Clinic Exterior View",
+    src: "/lovable-uploads/clinic-exterior-updated.jpg",
+    name: "Clinic",
     category: "Facility"
   }, {
     src: "/lovable-uploads/waiting-area-new.png",
     name: "Waiting Area",
     category: "Facility"
   }, {
-    src: "/lovable-uploads/medical-doctor.jpg",
-    name: "Medical Doctor",
+    src: "/lovable-uploads/new-medical-director.jpg",
+    name: "Director",
     category: "Team"
   }, {
     src: "/lovable-uploads/3f2ea8ce-8e6d-4383-9fce-900ffef57f89.png",
@@ -35,7 +35,7 @@ const Gallery = () => {
     category: "Services"
   }, {
     src: "/lovable-uploads/xray-department.png",
-    name: "Radiographer at work/X-ray Department",
+    name: "X-ray Department",
     category: "Services"
   }, {
     src: "/lovable-uploads/ultrasound-department.jpg",
@@ -48,6 +48,10 @@ const Gallery = () => {
   }, {
     src: "/lovable-uploads/chemistry-department-2.jpg",
     name: "Chemistry Department",
+    category: "Services"
+  }, {
+    src: "/lovable-uploads/digital-xray-department.jpg",
+    name: "Digital X-ray",
     category: "Services"
   }, {
     src: "/lovable-uploads/b37e74d6-ddb5-4e25-ac78-9c8350905184.png",

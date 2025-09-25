@@ -121,7 +121,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
-            <span className="text-xs sm:text-sm text-center sm:text-left">© 2024 O.A.S.I.S. MEDICALS. All rights reserved.</span>
+            <span className="text-xs sm:text-sm text-center sm:text-left">© 2025 O.A.S.I.S. MEDICALS. All rights reserved.</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
             <span>Privacy Policy</span>
