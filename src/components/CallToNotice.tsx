@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { MapPin, AlertCircle, MessageCircle } from "lucide-react";
 
 const CallToNotice = () => {
   return (
@@ -18,9 +19,16 @@ const CallToNotice = () => {
                   <AlertCircle className="w-5 h-5 text-accent" />
                   <h3 className="text-xl font-bold text-foreground">Important Notice</h3>
                 </div>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   <span className="font-semibold text-accent">👉</span> <em className="font-medium">Please note: If you would like our team to collect samples from your home, office, or any other location, there will be an extra charge. Charges are determined by distance and will be discussed in person before confirmation.</em>
                 </p>
+                <Button 
+                  onClick={() => window.open('https://wa.me/2347033600770', '_blank')}
+                  className="bg-green-600 hover:bg-green-700 text-white font-medium"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  👉 Contact Us on WhatsApp to Discuss Charges
+                </Button>
               </div>
             </div>
           </CardContent>
