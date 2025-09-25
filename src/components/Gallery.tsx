@@ -54,6 +54,10 @@ const Gallery = () => {
     name: "Digital X-ray",
     category: "Services"
   }, {
+    src: "/lovable-uploads/waiting-area-updated.jpg",
+    name: "Waiting Area",
+    category: "Facility"
+  }, {
     src: "/lovable-uploads/b37e74d6-ddb5-4e25-ac78-9c8350905184.png",
     name: "Medical Team Photo",
     category: "Team"
