@@ -7,7 +7,7 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const galleryImages = [{
     src: "/lovable-uploads/clinic-exterior-updated.jpg",
-    name: "Clinic",
+    name: "Exterior View",
     category: "Facility"
   }, {
     src: "/lovable-uploads/waiting-area-new.png",
