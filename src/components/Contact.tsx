@@ -315,7 +315,7 @@ const Contact = () => {
                   <h3 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">Visit Our Diagnostic Center</h3>
                   <p className="text-white/90 mb-3 sm:mb-4 text-sm sm:text-base">Located in Ifo, Ogun State</p>
                   <Button 
-                    onClick={() => window.open('https://maps.google.com', '_blank')}
+                    onClick={() => window.open('https://maps.app.goo.gl/QLUwoTxUVJYSWKRdA', '_blank')}
                     className="bg-gradient-to-r from-medical-cyan to-medical-magenta hover:opacity-90 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
                   >
                     Get Directions
