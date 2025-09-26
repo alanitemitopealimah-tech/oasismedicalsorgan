@@ -67,35 +67,37 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
         return;
       }
 
+      // Get Paystack public key from environment variables
+      const paystackKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+      
+      if (!paystackKey) {
+        toast.error('Payment system configuration error. Please contact support.');
+        setLoading(false);
+        return;
+      }
+
       // Create payment record in database
       const paymentData = {
         user_id: user.id,
-        service_name: serviceName,
-        service_price: servicePrice,
+        amount: servicePrice,
+        currency: 'NGN',
+        payment_reference: `ref_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         payment_method: method,
-        paystack_reference: `ref_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         status: 'pending'
       };
 
-      // TODO: Database integration - temporarily disabled
-      // const { data: payment, error: paymentError } = await supabase
-      //   .from('payments')
-      //   .insert(paymentData)
-      //   .select()
-      //   .single();
+      // Create secure payment record
+      const { data: payment, error: paymentError } = await supabase
+        .from('payments')
+        .insert(paymentData)
+        .select()
+        .single();
 
-      // if (paymentError) {
-      //   console.error('Payment creation error:', paymentError);
-      //   toast.error('Failed to create payment record');
-      //   setLoading(false);
-      //   return;
-      // }
-
-      // Temporary mock payment object
-      const payment = {
-        id: `temp_${Date.now()}`,
-        paystack_reference: paymentData.paystack_reference
-      };
+      if (paymentError) {
+        toast.error('Failed to initialize payment');
+        setLoading(false);
+        return;
+      }
 
       // Configure channels - show all available payment methods
       let channels: string[] = ['card', 'bank', 'ussd', 'mobile_money', 'opay'];
@@ -105,11 +107,11 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
 
       // Initialize Paystack payment
       const handler = window.PaystackPop.setup({
-        key: 'pk_live_aaf0968d8bb41faadb8cbbb65f02a59e4f037e45',
+        key: paystackKey,
         email: user.email,
         amount: servicePrice * 100, // Convert to kobo
         currency: 'NGN',
-        ref: payment.paystack_reference,
+        ref: payment.payment_reference,
         channels: channels,
         metadata: {
           service_name: serviceName,
@@ -117,22 +119,25 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
           user_id: user.id
         },
         onSuccess: async (transaction: any) => {
-          // Verify payment on server
-          const { error: verifyError } = await supabase.functions.invoke('verify-payment', {
-            body: { 
-              reference: transaction.reference,
-              payment_id: payment.id 
+          try {
+            // Verify payment on server
+            const { error: verifyError } = await supabase.functions.invoke('verify-payment', {
+              body: { 
+                reference: transaction.reference,
+                payment_id: payment.id 
+              }
+            });
+
+            if (verifyError) {
+              toast.error('Payment verification failed');
+              return;
             }
-          });
 
-          if (verifyError) {
-            console.error('Payment verification error:', verifyError);
+            toast.success('Payment successful!');
+            onSuccess?.(transaction.reference);
+          } catch (error) {
             toast.error('Payment verification failed');
-            return;
           }
-
-          toast.success('Payment successful!');
-          onSuccess?.(transaction.reference);
         },
         onCancel: () => {
           toast.info('Payment cancelled');
@@ -143,8 +148,7 @@ const PaystackPayment: React.FC<PaystackPaymentProps> = ({
       handler.openIframe();
       
     } catch (error) {
-      console.error('Payment error:', error);
-      toast.error(`Payment initialization failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      toast.error('Payment initialization failed');
     } finally {
       setLoading(false);
     }

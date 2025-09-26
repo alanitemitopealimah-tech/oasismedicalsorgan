@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -197,16 +198,33 @@ const TEST_CATEGORIES = {
 };
 
 const formSchema = z.object({
-  fullName: z.string().min(2, 'Full name must be at least 2 characters'),
-  phoneNumber: z.string().min(10, 'Please enter a valid phone number'),
-  email: z.string().email('Please enter a valid email address'),
-  homeAddress: z.string().min(5, 'Please enter your home address'),
-  state: z.string().min(2, 'Please enter your state'),
+  fullName: z.string()
+    .trim()
+    .min(2, { message: "Full name must be at least 2 characters" })
+    .max(100, { message: "Full name must be less than 100 characters" })
+    .regex(/^[a-zA-Z\s'-]+$/, { message: "Full name can only contain letters, spaces, hyphens, and apostrophes" }),
+  phoneNumber: z.string()
+    .trim()
+    .min(10, { message: "Phone number must be at least 10 digits" })
+    .max(15, { message: "Phone number must be less than 15 digits" })
+    .regex(/^[\d+\-\s()]+$/, { message: "Invalid phone number format" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Invalid email address" })
+    .max(255, { message: "Email must be less than 255 characters" }),
+  homeAddress: z.string()
+    .trim()
+    .min(10, { message: "Home address must be at least 10 characters" })
+    .max(500, { message: "Home address must be less than 500 characters" }),
+  state: z.string()
+    .trim()
+    .min(2, { message: "State must be at least 2 characters" })
+    .max(50, { message: "State must be less than 50 characters" }),
   selectedTests: z.array(z.object({
     name: z.string(),
     price: z.number(),
     category: z.string()
-  })).min(1, 'Please select at least one test'),
+  })).min(1, { message: "Please select at least one test" })
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -218,6 +236,7 @@ interface BookingFormProps {
 
 const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedTests, setSelectedTests] = useState<Array<{name: string, price: number, category: string}>>([]);
   const [totalCost, setTotalCost] = useState(0);
@@ -262,9 +281,38 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
   };
 
   const onSubmit = async (data: FormData) => {
+    if (!user) {
+      toast.error('Please login to continue with booking');
+      navigate('/auth');
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
+      // Create secure booking record in database
+      const bookingData = {
+        user_id: user.id,
+        full_name: data.fullName,
+        phone_number: data.phoneNumber,
+        email: data.email,
+        home_address: data.homeAddress,
+        state: data.state,
+        selected_tests: data.selectedTests,
+        total_amount: totalCost
+      };
+
+      const { data: booking, error: bookingError } = await supabase
+        .from('bookings')
+        .insert(bookingData)
+        .select()
+        .single();
+
+      if (bookingError) {
+        toast.error('Failed to create booking. Please try again.');
+        return;
+      }
+
       // Send email notification
       const { error: emailError } = await supabase.functions.invoke('send-booking-notification', {
         body: {
@@ -281,14 +329,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
       });
 
       if (emailError) {
-        console.error('Email error:', emailError);
-        toast.error('Failed to send booking notification. Please try again.');
-        return;
+        // Don't fail the booking if email fails, just log it
+        // The booking is already created successfully
       }
 
-      toast.success('Booking details submitted successfully!');
+      toast.success('Booking created successfully!');
       
-      // Navigate to payment with all the data
+      // Navigate to payment with booking data
       navigate('/payment', {
         state: {
           serviceName: 'Medical Tests',
@@ -296,6 +343,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ serviceName, servicePrice }) 
           customerData: data,
           selectedTests: data.selectedTests,
           totalCost,
+          bookingId: booking.id,
         },
       });
     } catch (error) {
