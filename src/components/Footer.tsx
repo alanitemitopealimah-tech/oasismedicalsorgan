@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Phone, MessageCircle, Mail, MapPin, Heart } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Heart, Facebook, Instagram, Map } from "lucide-react";
 
 const Footer = () => {
   const openWhatsApp = () => {
@@ -9,6 +9,18 @@ const Footer = () => {
 
   const makeCall = () => {
     window.open('tel:+2348058135226', '_self');
+  };
+
+  const openFacebook = () => {
+    window.open('https://www.facebook.com/OasisMedicals', '_blank');
+  };
+
+  const openInstagram = () => {
+    window.open('https://www.instagram.com/oasismedicals/', '_blank');
+  };
+
+  const openGoogleMaps = () => {
+    window.open('https://maps.app.goo.gl/QLUwoTxUVJYSWKRdA', '_blank');
   };
 
   const quickLinks = [
@@ -57,6 +69,22 @@ const Footer = () => {
               <Button onClick={openWhatsApp} size="sm" className="bg-gradient-to-r from-medical-cyan to-medical-magenta hover:opacity-90 text-xs sm:text-sm">
                 <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
               </Button>
+            </div>
+            
+            {/* Social Media Section */}
+            <div className="space-y-3">
+              <h5 className="text-sm sm:text-base font-semibold text-foreground">Follow Us</h5>
+              <div className="flex space-x-2 sm:space-x-3">
+                <Button onClick={openFacebook} size="sm" variant="outline" className="text-xs sm:text-sm hover:bg-blue-50 hover:border-blue-200">
+                  <Facebook className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
+                </Button>
+                <Button onClick={openInstagram} size="sm" variant="outline" className="text-xs sm:text-sm hover:bg-pink-50 hover:border-pink-200">
+                  <Instagram className="w-3 h-3 sm:w-4 sm:h-4 text-pink-600" />
+                </Button>
+                <Button onClick={openGoogleMaps} size="sm" variant="outline" className="text-xs sm:text-sm hover:bg-green-50 hover:border-green-200">
+                  <Map className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                </Button>
+              </div>
             </div>
           </div>
 
