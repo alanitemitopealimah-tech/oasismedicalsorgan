@@ -223,12 +223,18 @@ const Contact = () => {
                       <SelectTrigger className="text-sm sm:text-base">
                         <SelectValue placeholder="Select test type" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="ultrasound">Ultrasound Scan</SelectItem>
+                      <SelectContent className="bg-background border shadow-lg z-50">
+                        <SelectItem value="ultrasound">Ultrasound Scans</SelectItem>
                         <SelectItem value="laboratory">Laboratory Tests</SelectItem>
-                        <SelectItem value="ecg">ECG (Electrocardiogram)</SelectItem>
-                        <SelectItem value="xray">X-Ray Services</SelectItem>
+                        <SelectItem value="fever">Fever Packages</SelectItem>
+                        <SelectItem value="fullbody">Full Body Checkup</SelectItem>
+                        <SelectItem value="fertility">Fertility/Hormonal Tests</SelectItem>
+                        <SelectItem value="premarital">Pre-marital Screening</SelectItem>
+                        <SelectItem value="domestic">Domestic Staff Screening</SelectItem>
+                        <SelectItem value="ecg">ECG Services</SelectItem>
+                        <SelectItem value="xray">X-Ray Imaging</SelectItem>
                         <SelectItem value="multiple">Multiple Tests</SelectItem>
+                        <SelectItem value="other">Other (Specify in notes)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
