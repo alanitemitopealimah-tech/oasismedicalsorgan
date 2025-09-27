@@ -3,7 +3,7 @@ import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigationWithLoading } from "@/hooks/useNavigationWithLoading";
 import { useState } from "react";
-import PremiumLoadingScreen from "./PremiumLoadingScreen";
+import PremiumLoadingScreen from "@/components/PremiumLoadingScreen";
 
 const Navbar = () => {
   const { user } = useAuth();
